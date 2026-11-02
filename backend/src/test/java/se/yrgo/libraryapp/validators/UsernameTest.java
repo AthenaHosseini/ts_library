@@ -18,4 +18,24 @@ public class UsernameTest {
     void usernameWithNumbersShouldBeValid() {
         assertThat(Username.validate("Hampus123")).isTrue();
     }
+
+    @Test
+    void usernameTooShort() {
+        assertThat(Username.validate("hej")).isFalse();
+    }
+
+    @Test
+    void usernameWithFourLetters() {
+        assertThat(Username.validate("Saga")).isTrue();
+    }
+
+    @Test
+    void emptyUsername() {
+        assertThat(Username.validate("")).isFalse();
+    }
+
+    @Test
+    void nullUsernameShouldBeInvalid() {
+        assertThat(Username.validate(null)).isFalse();
+    }
 }
