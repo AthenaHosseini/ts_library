@@ -46,4 +46,11 @@ public class UtilsTest {
     void shouldRemoveNumbersAndSymbols(String text) {
         assertThat(Utils.onlyLettersAndWhitespace(text)).isEqualTo("saga");
     }
+
+    @Test
+    void shouldKeepSpacesInNames() {
+        assertThat(Utils.cleanAndUnLeet("Moa 123 Brander")).isEqualTo("moa le brander");
+    }
+
+
 }
