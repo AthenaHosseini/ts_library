@@ -81,4 +81,20 @@ public class UserServiceTest {
         UserService userService = new UserService(userDao, encoder);
         assertThat(userService.isNameAvailable(username)).isFalse();
     }
+
+    @Test
+    void loginWithNonExistingUser() {
+        final String username = "finnsinte";
+
+        when(userDao.getLoginInfo(username))
+                .thenReturn(Optional.empty());
+
+        final PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
+
+        UserService userService = new UserService(userDao, encoder);
+
+        assertThat(userService.validate(username, "password"))
+                .isEmpty();
+    }
+
 }
